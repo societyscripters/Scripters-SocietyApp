@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:titleTextColor="@color/white"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/comment"
+        android:title="Comentarios"
+        android:titleTextColor="@color/white"
+        android:icon="@drawable/comment"/>
+    <item
+        android:id="@+id/user"
+        android:title="Perfil"
+        android:titleTextColor="@color/white"
+        android:icon="@drawable/user"/>
+    <item
+        android:id="@+id/buscar"
+        android:title="Buscar"
+        android:titleTextColor="@color/white"
+        android:icon="@drawable/search_24"/>
+</menu>

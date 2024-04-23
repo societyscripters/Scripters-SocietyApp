@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#CFD1D0">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/user"/>
+
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="305dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:paddingLeft="10dp"
+            android:text="JORGE NAVARRO NUÑEZ"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/hora_p"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="35dp"
+            android:paddingLeft="10dp"
+            android:text="15:15 | 25-02-2024"
+            android:textSize="20sp" />
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+        <ImageView
+            android:layout_width="345dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/imgpub" />
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/comment_24" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/share" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
