@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,7 @@ import java.util.Map;
 public class Login extends AppCompatActivity {
 
     public static UserLoged usuarioLogeado;
+    ProgressBar progressBar;
     EditText email, password;
     Button btnLogin;
     @Override
@@ -43,9 +45,13 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.etPasswordLog);
         btnLogin = findViewById(R.id.btnLogin);
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                btnLogin.setVisibility(View.INVISIBLE);
                 logearUsuario();
             }
         });
@@ -78,6 +84,8 @@ public class Login extends AppCompatActivity {
 
                                 @Override
                                 public void onError(String mensajeError) {
+                                    btnLogin.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(Login.this, mensajeError, Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -87,12 +95,16 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 } catch (Exception ex) {
+                    btnLogin.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Login.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                btnLogin.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(Login.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
@@ -160,5 +172,6 @@ public class Login extends AppCompatActivity {
     private void showHomeView() {
         Intent intent = new Intent(Login.this, activity_principal.class);
         startActivity(intent);
+        finish();
     }
 }

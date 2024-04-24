@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
+    ProgressBar progressBar;
     EditText etNombre, etEmail, etPassword, etPasswordConfirm;
     Button btnRegister;
     @Override
@@ -36,6 +38,9 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
+
+        progressBar = findViewById(R.id.progressBarReg);
+        progressBar.setVisibility(View.INVISIBLE);
 
         btnRegister = findViewById(R.id.btn_register);
         etNombre = findViewById(R.id.etNombre);
@@ -46,6 +51,8 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnRegister.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 registrarUsuario();
             }
         });
@@ -65,6 +72,8 @@ public class Register extends AppCompatActivity {
                         startActivity(intent);
                     }
                 } catch (Exception ex) {
+                    btnRegister.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Register.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
@@ -72,6 +81,8 @@ public class Register extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                btnRegister.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(Register.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
