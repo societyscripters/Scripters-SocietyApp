@@ -61,21 +61,19 @@ public class Login extends AppCompatActivity {
                     if (jsonResponse.has("status")){
                         if (jsonResponse.getBoolean("status")){
                             String message = jsonResponse.getString("message");
+                            usuarioLogeado = new UserLoged(jsonResponse.getString("token"));
                             getProfileUserLoged(new UserCallBack() {
                                 @Override
                                 public void onUserLoaded(Object[] data) {
-                                    try {
-                                        usuarioLogeado = new UserLoged(
-                                                jsonResponse.getString("token"),
-                                                Integer.parseInt(String.valueOf(data[0])),
-                                                String.valueOf(data[1]),
-                                                String.valueOf(data[2]),
-                                                String.valueOf(data[3]),
-                                                String.valueOf(data[4]),
-                                                String.valueOf(data[5]));
-                                    } catch (JSONException e) {
-                                        throw new RuntimeException(e);
-                                    }
+                                    usuarioLogeado.setId(Integer.parseInt(String.valueOf(data[0])));
+                                    usuarioLogeado.setName(String.valueOf(data[1]));
+                                    usuarioLogeado.setEmail(String.valueOf(data[2]));
+                                    usuarioLogeado.setEmail_verified_at(String.valueOf(data[3]));
+                                    usuarioLogeado.setCreated_at(String.valueOf(data[4]));
+                                    usuarioLogeado.setUpdated_at(String.valueOf(data[5]));
+
+                                    Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+                                    showHomeView();
                                 }
 
                                 @Override
@@ -83,9 +81,6 @@ public class Login extends AppCompatActivity {
                                     Toast.makeText(Login.this, mensajeError, Toast.LENGTH_LONG).show();
                                 }
                             });
-
-                            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
-                            showHomeView();
                         } else {
                             String message = jsonResponse.getString("message");
                             Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
@@ -126,12 +121,13 @@ public class Login extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     if (jsonResponse.has("status")){
                         if (jsonResponse.getBoolean("status")){
-                            dataUser[0] = jsonResponse.getInt("id");
-                            dataUser[1] = jsonResponse.getString("name");
-                            dataUser[2] = jsonResponse.getString("email");
-                            dataUser[3] = jsonResponse.getString("email_verified_at");
-                            dataUser[4] = jsonResponse.getString("created_at");
-                            dataUser[5] = jsonResponse.getString("updated_at");
+                            JSONObject data = jsonResponse.getJSONObject("data");
+                            dataUser[0] = data.getInt("id");
+                            dataUser[1] = data.getString("name");
+                            dataUser[2] = data.getString("email");
+                            dataUser[3] = data.getString("email_verified_at");
+                            dataUser[4] = data.getString("created_at");
+                            dataUser[5] = data.getString("updated_at");
                         } else {
                             String message = jsonResponse.getString("message");
                             Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
@@ -151,10 +147,13 @@ public class Login extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Bearer Token", usuarioLogeado.getJwtToken());
+                headers.put("Authorization", "Bearer" + usuarioLogeado.getJwtToken());
                 return headers;
             }
         };
+
+        RequestQueue reqQueue = Volley.newRequestQueue(this);
+        reqQueue.add(req);
 //        return dataUser;
     }
 

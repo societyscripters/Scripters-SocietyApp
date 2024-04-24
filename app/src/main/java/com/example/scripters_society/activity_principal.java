@@ -2,6 +2,7 @@ package com.example.scripters_society;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class activity_principal extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
+    TextView tvNombreUsuario, tvEmailUsuario, tvEstado;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     CommentFragment commentFragment = new CommentFragment();

@@ -1,5 +1,7 @@
 package com.example.scripters_society;
 
+import static com.example.scripters_society.Login.usuarioLogeado;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class PerfilFragment extends Fragment {
+
+    TextView tvNombreUsuario, tvEmailUsuario, tvEstadoUsuario;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +63,15 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
+        View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        tvNombreUsuario = view.findViewById(R.id.tvNameUser);
+        tvEmailUsuario = view.findViewById(R.id.tvEmailUser);
+        tvEstadoUsuario = view.findViewById(R.id.tvStatusUser);
+
+        tvNombreUsuario.setText(usuarioLogeado.getName());
+        tvEmailUsuario.setText(usuarioLogeado.getEmail());
+        tvEstadoUsuario.setText("\\\"Hola mundo\\\"");
+        return view;
     }
 }
