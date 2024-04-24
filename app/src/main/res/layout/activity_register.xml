@@ -33,6 +33,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="20dp"
         android:textColorHint="@color/black"
+        android:inputType="textPersonName"
         android:hint="Ingrese su Nombre" />
 
     <EditText
@@ -44,6 +45,7 @@
         android:textColorHint="@color/black"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="20dp"
+        android:inputType="textEmailAddress"
         android:hint="Ingrese su Email" />
 
     <EditText
