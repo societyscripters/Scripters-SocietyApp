@@ -13,18 +13,28 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button btnLoginInit, btnRegisterInit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.login); // Supongamos que el botón tiene el id "button"
-        button.setOnClickListener(new View.OnClickListener() {
+        btnLoginInit = findViewById(R.id.btnLoginInit); // Supongamos que el botón tiene el id "button"
+        btnRegisterInit = findViewById(R.id.btnRegisterInit);
+        btnLoginInit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Crear un Intent para abrir la SecondActivity
                 Intent intent = new Intent(MainActivity.this, activity_principal.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRegisterInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
             }
         });

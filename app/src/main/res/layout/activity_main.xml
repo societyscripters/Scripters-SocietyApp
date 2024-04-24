@@ -25,7 +25,7 @@
         />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btnLoginInit"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginTop="100dp"
@@ -35,7 +35,7 @@
         android:text="Inicio de sesion" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/btnRegisterInit"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginTop="20dp"

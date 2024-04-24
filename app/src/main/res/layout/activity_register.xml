@@ -19,13 +19,13 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:src="@drawable/registro"
         android:layout_gravity="center"
         android:background="@null" />
 
     <EditText
-        android:id="@+id/nombre"
+        android:id="@+id/etNombre"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/border"
@@ -36,7 +36,7 @@
         android:hint="Ingrese su Nombre" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/border"
@@ -47,7 +47,7 @@
         android:hint="Ingrese su Email" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
@@ -57,6 +57,18 @@
         android:textColorHint="@color/black"
         android:inputType="textPassword"
         android:hint="Ingrese su Password" />
+
+    <EditText
+        android:id="@+id/etPasswordConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#D3D0D0"
+        android:textColorHint="@color/black"
+        android:inputType="textPassword"
+        android:hint="Confirme su Password" />
 
     <Button
         android:id="@+id/btn_register"
