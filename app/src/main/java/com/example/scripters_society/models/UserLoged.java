@@ -1,5 +1,7 @@
 package com.example.scripters_society.models;
 
+import java.util.ArrayList;
+
 public class UserLoged {
     private String jwtToken;
     private int id;
@@ -10,6 +12,7 @@ public class UserLoged {
     private String updated_at;
     private String pathPhotoProfile;
     private String status;
+    private ArrayList<Object> posts;
 
     public UserLoged(String jwtToken) {
         this.jwtToken = jwtToken;
@@ -88,5 +91,21 @@ public class UserLoged {
 
     public void setJwtToken(String jwtToken) {
         this.jwtToken = jwtToken;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public ArrayList<Object> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(ArrayList<Object> posts) {
+        this.posts = posts;
     }
 }

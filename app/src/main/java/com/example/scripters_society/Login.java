@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.scripters_society.controllers.interfaces.UserCallBack;
 import com.example.scripters_society.models.UserLoged;
 
 import org.json.JSONObject;
@@ -81,12 +82,13 @@ public class Login extends AppCompatActivity {
                             getProfileUserLoged(new UserCallBack() {
                                 @Override
                                 public void onUserLoaded(Object[] data) {
-                                    usuarioLogeado.setId(Integer.parseInt(String.valueOf(data[0])));
-                                    usuarioLogeado.setName(String.valueOf(data[1]));
-                                    usuarioLogeado.setEmail(String.valueOf(data[2]));
-                                    usuarioLogeado.setEmail_verified_at(String.valueOf(data[3]));
-                                    usuarioLogeado.setCreated_at(String.valueOf(data[4]));
-                                    usuarioLogeado.setUpdated_at(String.valueOf(data[5]));
+//                                    usuarioLogeado.setId(Integer.parseInt(String.valueOf(data[0])));
+                                    usuarioLogeado.setName(String.valueOf(data[0]));
+                                    usuarioLogeado.setEmail(String.valueOf(data[1]));
+                                    usuarioLogeado.setStatus(String.valueOf(data[2]));
+//                                    usuarioLogeado.setEmail_verified_at(String.valueOf(data[3]));
+//                                    usuarioLogeado.setCreated_at(String.valueOf(data[4]));
+//                                    usuarioLogeado.setUpdated_at(String.valueOf(data[5]));
 
                                     Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
                                     showHomeView();
@@ -136,7 +138,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void getProfileUserLoged(UserCallBack callBack) {
-        Object[] dataUser = new Object[6];
+        Object[] dataUser = new Object[4];
         String url = "https://redsocial.balinsa.com/api/profile";
         StringRequest req = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -146,12 +148,13 @@ public class Login extends AppCompatActivity {
                     if (jsonResponse.has("status")){
                         if (jsonResponse.getBoolean("status")){
                             JSONObject data = jsonResponse.getJSONObject("data");
-                            dataUser[0] = data.getInt("id");
-                            dataUser[1] = data.getString("name");
-                            dataUser[2] = data.getString("email");
-                            dataUser[3] = data.getString("email_verified_at");
-                            dataUser[4] = data.getString("created_at");
-                            dataUser[5] = data.getString("updated_at");
+//                            dataUser[0] = data.getInt("id");
+                            dataUser[0] = data.getString("name");
+                            dataUser[1] = data.getString("email");
+                            dataUser[2] = data.getString("estado");
+//                            dataUser[3] = data.getString("email_verified_at");
+//                            dataUser[4] = data.getString("created_at");
+//                            dataUser[5] = data.getString("updated_at");
                         } else {
                             String message = jsonResponse.getString("message");
                             Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();

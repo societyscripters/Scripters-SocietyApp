@@ -71,7 +71,7 @@ public class PerfilFragment extends Fragment {
 
         tvNombreUsuario.setText(usuarioLogeado.getName());
         tvEmailUsuario.setText(usuarioLogeado.getEmail());
-        tvEstadoUsuario.setText('"'+"Hola mundo"+'"');
+        tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
         return view;
     }
 }

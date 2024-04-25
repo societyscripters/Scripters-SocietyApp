@@ -32,47 +32,58 @@
             android:layout_marginTop="35dp"
             android:paddingLeft="10dp"
             android:text="15:15 | 25-02-2024"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
 
     </FrameLayout>
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
-        <ImageView
-            android:id="@+id/imgPublicacion"
-            android:layout_width="345dp"
-            android:layout_height="160dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/imgpub" />
+        android:layout_height="200dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp">
+            <TextView
+                android:id="@+id/tvDescription"
+                android:text="Hola mundo"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+            <ImageView
+                android:id="@+id/imgPublicacion"
+                android:layout_width="330dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgpub"/>
+        </LinearLayout>
+
 
         <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical"
             android:textAlignment="center">
 
             <ImageView
-                android:layout_width="35dp"
+                android:layout_width="40dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="5dp"
                 android:src="@drawable/star" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="5dp"
                 android:src="@drawable/comment_24" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="5dp"
                 android:src="@drawable/share" />
 
         </LinearLayout>
