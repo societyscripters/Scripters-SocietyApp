@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,6 +29,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
+    ListView lvPublicaciones;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        lvPublicaciones = view.findViewById(R.id.lvPublicaciones);
 
         return view;
     }

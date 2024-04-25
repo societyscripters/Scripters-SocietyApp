@@ -7,13 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.text.TextUtils;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -22,8 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.scripters_society.models.UserLoged;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -50,9 +48,21 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                btnLogin.setVisibility(View.INVISIBLE);
-                logearUsuario();
+                if (validarCredenciales()) {
+                    if (email.getText().toString().isEmpty()){
+                        Toast.makeText(Login.this, "Ingrese un email", Toast.LENGTH_SHORT).show();
+                    } else if (!isValidEmail(email.getText().toString())) {
+                        Toast.makeText(Login.this, "Ingrese un email valido", Toast.LENGTH_SHORT).show();
+                    } else if (password.getText().toString().isEmpty()) {
+                        Toast.makeText(Login.this, "Ingrese una contraseña", Toast.LENGTH_SHORT).show();
+                    } else {
+                        progressBar.setVisibility(View.VISIBLE);
+                        btnLogin.setVisibility(View.INVISIBLE);
+                        logearUsuario();
+                    }
+                } else {
+                    Toast.makeText(Login.this, "Rellene todos los campos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -90,6 +100,8 @@ public class Login extends AppCompatActivity {
                                 }
                             });
                         } else {
+                            btnLogin.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
                             String message = jsonResponse.getString("message");
                             Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
                         }
@@ -167,6 +179,16 @@ public class Login extends AppCompatActivity {
         RequestQueue reqQueue = Volley.newRequestQueue(this);
         reqQueue.add(req);
 //        return dataUser;
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    private boolean validarCredenciales() {
+        String textEmail = email.getText().toString();
+        String pass = email.getText().toString();
+        return !textEmail.equals("") && !pass.equals("");
     }
 
     private void showHomeView() {

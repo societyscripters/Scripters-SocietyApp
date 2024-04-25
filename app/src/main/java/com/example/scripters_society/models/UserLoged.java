@@ -1,4 +1,4 @@
-package com.example.scripters_society;
+package com.example.scripters_society.models;
 
 public class UserLoged {
     private String jwtToken;
