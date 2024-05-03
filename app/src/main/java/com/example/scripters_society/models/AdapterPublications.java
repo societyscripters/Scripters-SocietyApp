@@ -1,6 +1,9 @@
 package com.example.scripters_society.models;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,18 +47,37 @@ public class AdapterPublications extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Publication publication = (Publication) getItem(position);
-        convertView = LayoutInflater.from(context).inflate(R.layout.item_public, null);
-        ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgPublicacion);
-        TextView tvNameUser = (TextView) convertView.findViewById(R.id.tvName_user);
-        TextView tvHoraPublished = (TextView) convertView.findViewById(R.id.tvHora_pub);
-        TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+        if (!publication.getPathImage().equals("null")) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_public_with_image, null);
+            ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgPublicacion);
+            TextView tvNameUser = (TextView) convertView.findViewById(R.id.tvName_user);
+            TextView tvHoraPublished = (TextView) convertView.findViewById(R.id.tvHora_pub);
+            TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
 
+            tvNameUser.setText(publication.getName());
+            tvDescription.setText(publication.getDescription());
+            tvHoraPublished.setText(dateTimeFormatted(publication.getUpdated_at()));
+            imgFoto.setImageBitmap(getImageFromBase64(publication.getPathImage(), convertView));
 
-        tvNameUser.setText(publication.getName());
-        tvDescription.setText(publication.getDescription());
-        tvHoraPublished.setText(dateTimeFormatted(publication.getUpdated_at()));
+        } else {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_public_normal, null);
+//            ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgPublicacion);
+            TextView tvNameUser = (TextView) convertView.findViewById(R.id.tvName_user);
+            TextView tvHoraPublished = (TextView) convertView.findViewById(R.id.tvHora_pub);
+            TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+
+            tvNameUser.setText(publication.getName());
+            tvDescription.setText(publication.getDescription());
+            tvHoraPublished.setText(dateTimeFormatted(publication.getUpdated_at()));
+//            imgFoto.setImageBitmap(getImageFromBase64(publication.getPathImage(), convertView));
+        }
 
         return convertView;
+    }
+
+    private Bitmap getImageFromBase64(String base64, View convertView) {
+        byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 
     private String dateTimeFormatted(String dateTime) {
