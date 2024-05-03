@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,13 +40,18 @@ public class HomeFragment extends Fragment {
     private View viewFragment;
     private ListView lvPublicaciones;
     private AdapterPublications adapterPublications;
+    ProgressBar progressBar;
+    TextView tvNoPublications;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         listarPublicaciones(new PublicationCallBack() {
             @Override
             public void onPublicationLoaded(ArrayList<Publication> listaPublicaciones) {
+                progressBar.setVisibility(View.INVISIBLE);
                 adapterPublications = new AdapterPublications(viewFragment.getContext(), listaPublicaciones);
+                lvPublicaciones.setVisibility(View.VISIBLE);
                 lvPublicaciones.setAdapter(adapterPublications);
             }
 
@@ -61,8 +68,13 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         viewFragment = view;
+        progressBar = view.findViewById(R.id.progressBarPub);
+        tvNoPublications = view.findViewById(R.id.tvNoPublications);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
         lvPublicaciones = view.findViewById(R.id.lvPublicaciones);
-
+        lvPublicaciones.setVisibility(View.INVISIBLE);
+        tvNoPublications.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -76,24 +88,30 @@ public class HomeFragment extends Fragment {
                     JSONObject jsonResponse = new JSONObject(response);
                     if (jsonResponse.has("data")) {
                         JSONArray publicaciones = jsonResponse.getJSONArray("data");
-                        for (int i = 0; i < publicaciones.length(); i++) {
-                            try {
-                                JSONObject jsonPublications = publicaciones.getJSONObject(i);
-                                int id = jsonPublications.getInt("id");
-                                int userId = jsonPublications.getInt("user_id");
-                                String name = jsonPublications.getString("name");
-                                String description = jsonPublications.getString("description");
-                                String pathImage = jsonPublications.getString("image");
-                                String updated_at = jsonPublications.getString("updated_at");
-                                Publication publication = new Publication(id, userId, name, description, pathImage, updated_at);
+                        if (publicaciones.length() > 0) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            for (int i = 0; i < publicaciones.length(); i++) {
+                                try {
+                                    JSONObject jsonPublications = publicaciones.getJSONObject(i);
+                                    int id = jsonPublications.getInt("id");
+                                    int userId = jsonPublications.getInt("user_id");
+                                    String name = jsonPublications.getString("name");
+                                    String description = jsonPublications.getString("description");
+                                    String pathImage = jsonPublications.getString("image");
+                                    String updated_at = jsonPublications.getString("updated_at");
+                                    Publication publication = new Publication(id, userId, name, description, pathImage, updated_at);
 
-                                listPublications.add(publication);
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
+                                    listPublications.add(publication);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             }
+                            callBack.onPublicationLoaded(listPublications);
+                            System.out.println(publicaciones);
+                        } else {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            tvNoPublications.setVisibility(View.VISIBLE);
                         }
-                        callBack.onPublicationLoaded(listPublications);
-                        System.out.println(publicaciones);
                     }
                 } catch (Exception ex) {
                     Toast.makeText(viewFragment.getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();

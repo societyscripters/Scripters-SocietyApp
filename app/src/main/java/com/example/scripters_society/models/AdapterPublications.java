@@ -44,7 +44,7 @@ public class AdapterPublications extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Publication publication = (Publication) getItem(position);
-        convertView = LayoutInflater.from(context).inflate(R.layout.item_public, null);
+        convertView = LayoutInflater.from(context).inflate(R.layout.item_public_with_image, null);
         ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgPublicacion);
         TextView tvNameUser = (TextView) convertView.findViewById(R.id.tvName_user);
         TextView tvHoraPublished = (TextView) convertView.findViewById(R.id.tvHora_pub);
