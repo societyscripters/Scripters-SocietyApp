@@ -19,63 +19,13 @@
             android:layout_gravity="center"
             android:text="@string/publicar"
             android:textColor="@color/white"
-            android:textSize="25sp"></TextView>
+            android:textSize="25sp">
+
+        </TextView>
     </Toolbar>
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="¿ Que estas pensando?"
-        android:textColor="#3949AB"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.243"
-        tools:layout_editor_absoluteX="16dp">
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="320dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="424dp"
-            android:background="@drawable/bordpublic"
-            android:hint="¿ Que estas pensando?"
-            android:layout_marginLeft="10dp"
-            android:textAlignment="center" />
-
-        <LinearLayout
-            android:layout_width="71dp"
-            android:layout_height="140dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:srcCompat="@drawable/camera" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:srcCompat="@drawable/image" />
-        </LinearLayout>
-    </LinearLayout>
 
     <Button
         android:id="@+id/btnPublicar"
@@ -89,6 +39,103 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgpublic"
+        android:layout_width="300dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="228dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
+        app:layout_constraintTop_toBottomOf="@+id/imgpublic"
+        tools:layout_editor_absoluteX="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderimg">
+
+            <ImageView
+                android:id="@+id/btncamera"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingLeft="5dp"
+                app:srcCompat="@drawable/camera" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Tomar una foto"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderimg">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingLeft="5dp"
+                app:srcCompat="@drawable/image" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Selecciona una imagen"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderimg">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/user" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Etiqueta a un amigo"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="96dp"
+        android:hint="@string/txtPublicar"
+        android:textColorHint="@color/black"
+        android:textAlignment="center"
+        android:background="@drawable/bordpublic"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        tools:layout_editor_absoluteX="-6dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
