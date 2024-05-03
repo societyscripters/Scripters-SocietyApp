@@ -1,7 +1,9 @@
 package com.example.scripters_society;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class activity_principal extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
@@ -41,6 +44,16 @@ public class activity_principal extends AppCompatActivity implements NavigationB
         bottomNavigationView = findViewById(R.id.bottomnavigation);
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
+
+        FloatingActionButton fbtnPublicar = findViewById(R.id.fbtnPublicar);
+        fbtnPublicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Aquí iniciamos la nueva actividad
+                Intent intent = new Intent(activity_principal.this, publicar.class);
+                startActivity(intent);
+            }
+        });
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
