@@ -9,7 +9,7 @@ public class Publication implements Serializable {
     private int user_id;
     private String name;
     private String description;
-    private String pathImage;
+    private String pathImage = "";
     private String updated_at;
     private ArrayList<Object> comments;
 

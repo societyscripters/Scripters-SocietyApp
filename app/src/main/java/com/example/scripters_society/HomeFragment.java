@@ -97,9 +97,9 @@ public class HomeFragment extends Fragment {
                                     int userId = jsonPublications.getInt("user_id");
                                     String name = jsonPublications.getString("name");
                                     String description = jsonPublications.getString("description");
-                                    String pathImage = jsonPublications.getString("image");
+                                    String image = jsonPublications.getString("image");
                                     String updated_at = jsonPublications.getString("updated_at");
-                                    Publication publication = new Publication(id, userId, name, description, pathImage, updated_at);
+                                    Publication publication = new Publication(id, userId, name, description, image, updated_at);
 
                                     listPublications.add(publication);
                                 } catch (Exception ex) {
