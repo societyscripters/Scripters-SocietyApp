@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="¿ Que estas pensando?"
+        android:text="¿Que estas pensando?"
         android:textColor="#3949AB"
         android:textSize="25sp"
         android:textStyle="bold"
