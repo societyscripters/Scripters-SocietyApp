@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,6 +18,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,13 +126,53 @@ public class PerfilFragment extends Fragment {
         btnCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cambiarEstado(etEstado.getText().toString());
-                alertDialog.cancel();
-                Toast.makeText(getContext(), "Estado cambiado", Toast.LENGTH_SHORT).show();
+                actualizarEstadoPerfil(alertDialog);
             }
         });
 
         return view;
+    }
+
+    private void actualizarEstadoPerfil(AlertDialog alertDialog) {
+        String url = "https://redsocial.balinsa.com/api/profile/edit";
+        StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    if (jsonResponse.has("status")) {
+                        cambiarEstado(etEstado.getText().toString());
+                        alertDialog.cancel();
+                        Toast.makeText(getContext(), jsonResponse.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(getContext(), "error en el response", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getContext(), volleyError.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("estado", String.valueOf(etEstado.getText()));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer" + usuarioLogeado.getJwtToken());
+                return headers;
+            }
+        };
+
+        RequestQueue reqQueue = Volley.newRequestQueue(this.requireContext());
+        reqQueue.add(req);
     }
 
     private void cambiarEstado(String nuevoEstado) {
