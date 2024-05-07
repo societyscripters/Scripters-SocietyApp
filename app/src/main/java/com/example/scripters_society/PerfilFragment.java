@@ -2,6 +2,9 @@ package com.example.scripters_society;
 
 import static com.example.scripters_society.Login.usuarioLogeado;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +26,9 @@ import android.widget.TextView;
 public class PerfilFragment extends Fragment {
 
     TextView tvNombreUsuario, tvEmailUsuario, tvEstadoUsuario;
+    EditText etEstado;
+    Button btnCambiar, btnEditarEstado;
+    ImageButton imgBtnClose;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +74,16 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        View editProfileDialog = LayoutInflater.from(this.getContext()).inflate(R.layout.edit_profile_dialog,null);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this.getContext());
+        dialog.setView(editProfileDialog);
+
+        imgBtnClose = (ImageButton) editProfileDialog.findViewById(R.id.imgBtnClose);
+        btnCambiar = (Button) editProfileDialog.findViewById(R.id.btnCambiar);
+        etEstado = (EditText) editProfileDialog.findViewById(R.id.etNuevoEstado);
+        final AlertDialog alertDialog = dialog.create();
+
+        btnEditarEstado = view.findViewById(R.id.btnEditarEstado);
 
         tvNombreUsuario = view.findViewById(R.id.tvNameUser);
         tvEmailUsuario = view.findViewById(R.id.tvEmailUser);
@@ -72,6 +92,37 @@ public class PerfilFragment extends Fragment {
         tvNombreUsuario.setText(usuarioLogeado.getName());
         tvEmailUsuario.setText(usuarioLogeado.getEmail());
         tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
+        etEstado.setText(usuarioLogeado.getStatus());
+
+        btnEditarEstado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.show();
+            }
+        });
+
+        imgBtnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
+
+        btnCambiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambiarEstado(etEstado.getText().toString());
+                alertDialog.cancel();
+                Toast.makeText(getContext(), "Estado cambiado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
+    }
+
+    private void cambiarEstado(String nuevoEstado) {
+        usuarioLogeado.setStatus(nuevoEstado);
+        tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
     }
 }
