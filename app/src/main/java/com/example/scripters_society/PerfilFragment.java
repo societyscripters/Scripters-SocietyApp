@@ -205,6 +205,8 @@ public class PerfilFragment extends Fragment {
                 tvNoHayPublicaciones.setVisibility(View.INVISIBLE);
                 adapterPublications = new AdapterPublications(viewFragment.getContext(), publications);
                 lvPublicaciones.setAdapter(adapterPublications);
+                View viewEmpty = LayoutInflater.from(getContext()).inflate(R.layout.item_public_empty, null);
+                lvPublicaciones.addFooterView(viewEmpty);
             }
         } catch (JSONException ex) {
             Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -287,7 +289,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void showMainActivity() {
-        Intent intent = new Intent(this.getContext(), activity_principal.class);
+        Intent intent = new Intent(this.getContext(), MainActivity.class);
         startActivity(intent);
         this.requireActivity().finish();
     }
