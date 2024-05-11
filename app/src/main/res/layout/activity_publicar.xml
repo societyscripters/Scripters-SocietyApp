@@ -42,12 +42,12 @@
 
     <ImageView
         android:id="@+id/imgpublic"
-        android:layout_width="300dp"
-        android:layout_height="192dp"
-        android:layout_marginBottom="228dp"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -101,6 +101,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/selectimg"
                 android:textSize="20sp"
+                android:onClick="onclick"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
