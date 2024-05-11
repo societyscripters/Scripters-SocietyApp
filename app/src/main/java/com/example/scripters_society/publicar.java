@@ -74,7 +74,6 @@ public class publicar extends AppCompatActivity {
             Uri path = data.getData();
             ImageView imageView = findViewById(R.id.imgpublic);
             imageView.setImageURI(path);
-
             // Imprime un mensaje en la consola
 
         }else if (requestCode == 1 && resultCode == RESULT_OK) {
