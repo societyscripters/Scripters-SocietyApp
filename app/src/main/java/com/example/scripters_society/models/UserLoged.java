@@ -1,5 +1,7 @@
 package com.example.scripters_society.models;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class UserLoged {
@@ -12,7 +14,7 @@ public class UserLoged {
     private String updated_at;
     private String pathPhotoProfile;
     private String status;
-    private ArrayList<Object> posts;
+    private JSONArray posts;
 
     public UserLoged(String jwtToken) {
         this.jwtToken = jwtToken;
@@ -101,11 +103,11 @@ public class UserLoged {
         this.status = status;
     }
 
-    public ArrayList<Object> getPosts() {
+    public JSONArray getPosts() {
         return posts;
     }
 
-    public void setPosts(ArrayList<Object> posts) {
+    public void setPosts(JSONArray posts) {
         this.posts = posts;
     }
 }

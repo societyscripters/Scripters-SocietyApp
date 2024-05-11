@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment {
                 adapterPublications = new AdapterPublications(viewFragment.getContext(), listaPublicaciones);
                 lvPublicaciones.setVisibility(View.VISIBLE);
                 lvPublicaciones.setAdapter(adapterPublications);
+                View viewEmpty = LayoutInflater.from(getContext()).inflate(R.layout.item_public_empty, null);
+                lvPublicaciones.addFooterView(viewEmpty);
             }
 
             @Override

@@ -15,12 +15,12 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/imgBtnClose"
+            android:id="@+id/imgBtnClose_EditProfileDialog"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:src="@drawable/star_close"
+            android:src="@drawable/close"
             android:background="@android:color/transparent"
             android:layout_gravity="right|top"/>
 

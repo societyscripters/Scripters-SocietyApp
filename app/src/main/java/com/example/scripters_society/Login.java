@@ -21,10 +21,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.scripters_society.controllers.interfaces.UserCallBack;
+import com.example.scripters_society.models.Publication;
 import com.example.scripters_society.models.UserLoged;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,6 +89,7 @@ public class Login extends AppCompatActivity {
                                     usuarioLogeado.setName(String.valueOf(data[0]));
                                     usuarioLogeado.setEmail(String.valueOf(data[1]));
                                     usuarioLogeado.setStatus(String.valueOf(data[2]));
+                                    usuarioLogeado.setPosts((JSONArray) data[3]);
 //                                    usuarioLogeado.setEmail_verified_at(String.valueOf(data[3]));
 //                                    usuarioLogeado.setCreated_at(String.valueOf(data[4]));
 //                                    usuarioLogeado.setUpdated_at(String.valueOf(data[5]));
@@ -152,6 +156,7 @@ public class Login extends AppCompatActivity {
                             dataUser[0] = data.getString("name");
                             dataUser[1] = data.getString("email");
                             dataUser[2] = data.getString("estado");
+                            dataUser[3] = data.getJSONArray("posts");
 //                            dataUser[3] = data.getString("email_verified_at");
 //                            dataUser[4] = data.getString("created_at");
 //                            dataUser[5] = data.getString("updated_at");
