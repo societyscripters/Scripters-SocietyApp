@@ -82,6 +82,8 @@ public class Login extends AppCompatActivity {
                         if (jsonResponse.getBoolean("status")){
                             String message = jsonResponse.getString("message");
                             usuarioLogeado = new UserLoged(jsonResponse.getString("token"));
+//                            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+//                            showHomeView();
                             getProfileUserLoged(new UserCallBack() {
                                 @Override
                                 public void onUserLoaded(Object[] data) {

@@ -123,18 +123,6 @@ public class PerfilFragment extends Fragment {
         final AlertDialog alertDialog_change_status = dialog_change_status.create();
         final AlertDialog alertDialog_close_sesion = dialog_close_sesion.create();
 
-        btnEditarEstado = view.findViewById(R.id.btnEditarEstado);
-        btnCerrarSesion = view.findViewById(R.id.btnCerrarSesion);
-
-        tvNombreUsuario = view.findViewById(R.id.tvNameUser);
-        tvEmailUsuario = view.findViewById(R.id.tvEmailUser);
-        tvEstadoUsuario = view.findViewById(R.id.tvStatusUser);
-
-        tvNombreUsuario.setText(usuarioLogeado.getName());
-        tvEmailUsuario.setText(usuarioLogeado.getEmail());
-        tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
-        etEstado.setText(usuarioLogeado.getStatus());
-
         listarPublicacionesUsuario(view);
         btnEditarEstado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +193,19 @@ public class PerfilFragment extends Fragment {
                 tvNoHayPublicaciones.setVisibility(View.INVISIBLE);
                 adapterPublications = new AdapterPublications(viewFragment.getContext(), publications);
                 lvPublicaciones.setAdapter(adapterPublications);
+                View viewHeader = LayoutInflater.from(getContext()).inflate(R.layout.item_header_profile, null);
                 View viewEmpty = LayoutInflater.from(getContext()).inflate(R.layout.item_public_empty, null);
+                btnEditarEstado = viewHeader.findViewById(R.id.btnEditarEstado);
+                btnCerrarSesion = viewHeader.findViewById(R.id.btnCerrarSesion);
+
+                tvNombreUsuario = viewHeader.findViewById(R.id.tvNameUser);
+                tvEmailUsuario = viewHeader.findViewById(R.id.tvEmailUser);
+                tvEstadoUsuario = viewHeader.findViewById(R.id.tvStatusUser);
+                tvNombreUsuario.setText(usuarioLogeado.getName());
+                tvEmailUsuario.setText(usuarioLogeado.getEmail());
+                tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
+                etEstado.setText(usuarioLogeado.getStatus());
+                lvPublicaciones.addHeaderView(viewHeader);
                 lvPublicaciones.addFooterView(viewEmpty);
             }
         } catch (JSONException ex) {

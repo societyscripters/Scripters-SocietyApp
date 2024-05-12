@@ -108,8 +108,13 @@ public class publicar extends AppCompatActivity {
 
         if (requestCode == 10 && resultCode == RESULT_OK) {
             path = data.getData();
-            ImageView imageView = findViewById(R.id.imgpublic);
-            imageView.setImageURI(path);
+            try {
+                imgBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), path);
+                ImageView imageView = findViewById(R.id.imgpublic);
+                imageView.setImageURI(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             // Imprime un mensaje en la consola
 
         }else if (requestCode == 1 && resultCode == RESULT_OK) {

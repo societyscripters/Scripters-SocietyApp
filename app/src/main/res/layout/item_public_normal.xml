@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginVertical="15dp"
+            android:layout_marginVertical="20dp"
             android:orientation="horizontal"
             android:textAlignment="center">
 
