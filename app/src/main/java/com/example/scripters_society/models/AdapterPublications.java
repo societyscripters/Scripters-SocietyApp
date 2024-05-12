@@ -55,7 +55,11 @@ public class AdapterPublications extends BaseAdapter {
             TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
 
             tvNameUser.setText(publication.getName());
-            tvDescription.setText(publication.getDescription());
+            if (publication.getDescription().equals("null")) {
+                tvDescription.setText("");
+            } else {
+                tvDescription.setText(publication.getDescription());
+            }
             tvHoraPublished.setText(dateTimeFormatted(publication.getUpdated_at()));
             imgFoto.setImageBitmap(getImageFromBase64(publication.getPathImage(), convertView));
 
@@ -67,7 +71,11 @@ public class AdapterPublications extends BaseAdapter {
             TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
 
             tvNameUser.setText(publication.getName());
-            tvDescription.setText(publication.getDescription());
+            if (publication.getDescription().equals("null")) {
+                tvDescription.setText("");
+            } else {
+                tvDescription.setText(publication.getDescription());
+            }
             tvHoraPublished.setText(dateTimeFormatted(publication.getUpdated_at()));
 //            imgFoto.setImageBitmap(getImageFromBase64(publication.getPathImage(), convertView));
         }
