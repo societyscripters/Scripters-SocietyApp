@@ -160,20 +160,6 @@ public class publicar extends AppCompatActivity {
         return stream.toByteArray();
     }
 
-    public String convertirUriABitmap(Uri uri) {
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] byte_arr = stream.toByteArray();
-            String imagenString = Base64.encodeToString(byte_arr, Base64.DEFAULT);
-            return imagenString;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     private void showHomeView() {
         Intent intent = new Intent(getApplicationContext(), activity_principal.class);
         startActivity(intent);

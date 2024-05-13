@@ -2,6 +2,7 @@ package com.example.scripters_society;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-
     ProgressBar progressBar;
     EditText etNombre, etEmail, etPassword, etPasswordConfirm;
     Button btnRegister;
@@ -51,9 +51,24 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnRegister.setVisibility(View.INVISIBLE);
-                progressBar.setVisibility(View.VISIBLE);
-                registrarUsuario();
+                if (String.valueOf(etNombre.getText()).isEmpty()
+                        || String.valueOf(etEmail.getText()).isEmpty()
+                        || String.valueOf(etPassword.getText()).isEmpty()
+                        || String.valueOf(etPasswordConfirm.getText()).isEmpty()) {
+                    Toast.makeText(Register.this, "Rellene todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (isValidEmail(String.valueOf(etEmail.getText()))) {
+                        if (String.valueOf(etPassword.getText()).equals(String.valueOf(etPasswordConfirm.getText()))) {
+                            btnRegister.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
+                            registrarUsuario();
+                        } else {
+                            Toast.makeText(Register.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(Register.this, "Ingrese un email valido", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
     }
@@ -100,5 +115,9 @@ public class Register extends AppCompatActivity {
 
         RequestQueue reqQueue = Volley.newRequestQueue(this);
         reqQueue.add(req);
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

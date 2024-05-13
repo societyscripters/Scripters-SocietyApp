@@ -72,11 +72,6 @@ public class VolleyMultipartRequest extends Request<JSONObject> {
         listener.onResponse(jsonObject);
     }
 
-//    @Override
-//    protected void deliverResponse(NetworkResponse networkResponse) {
-//        listener.onResponse(networkResponse);
-//    }
-
     @Override
     public String getBodyContentType() {
         return "multipart/form-data;boundary=" + boundary;

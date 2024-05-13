@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.scripters_society.R;
 
@@ -50,9 +51,23 @@ public class AdapterPublications extends BaseAdapter {
         if (!publication.getPathImage().equals("null")) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_public_with_image, null);
             ImageView imgFoto = (ImageView) convertView.findViewById(R.id.imgPublicacion);
+            ImageView imgStar = (ImageView) convertView.findViewById(R.id.imgStar);
             TextView tvNameUser = (TextView) convertView.findViewById(R.id.tvName_user);
             TextView tvHoraPublished = (TextView) convertView.findViewById(R.id.tvHora_pub);
             TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+            imgStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(context, "Se dió clic en la estrella", Toast.LENGTH_SHORT).show();
+                    if (!publication.getIsLiked()) {
+                        imgStar.setImageResource(R.drawable.star_with_stroke);
+                        publication.setIsLiked(true);
+                    } else {
+                        imgStar.setImageResource(R.drawable.star);
+                        publication.setIsLiked(false);
+                    }
+                }
+            });
 
             tvNameUser.setText(publication.getName());
             if (publication.getDescription().equals("null")) {
