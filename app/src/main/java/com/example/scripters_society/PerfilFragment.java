@@ -189,6 +189,22 @@ public class PerfilFragment extends Fragment {
             }
             if (publications.isEmpty()) {
                 tvNoHayPublicaciones.setVisibility(View.VISIBLE);
+                adapterPublications = new AdapterPublications(viewFragment.getContext(), publications);
+                lvPublicaciones.setAdapter(adapterPublications);
+                View viewHeader = LayoutInflater.from(getContext()).inflate(R.layout.item_header_profile, null);
+                View viewEmpty = LayoutInflater.from(getContext()).inflate(R.layout.item_public_empty, null);
+                btnEditarEstado = viewHeader.findViewById(R.id.btnEditarEstado);
+                btnCerrarSesion = viewHeader.findViewById(R.id.btnCerrarSesion);
+
+                tvNombreUsuario = viewHeader.findViewById(R.id.tvNameUser);
+                tvEmailUsuario = viewHeader.findViewById(R.id.tvEmailUser);
+                tvEstadoUsuario = viewHeader.findViewById(R.id.tvStatusUser);
+                tvNombreUsuario.setText(usuarioLogeado.getName());
+                tvEmailUsuario.setText(usuarioLogeado.getEmail());
+                tvEstadoUsuario.setText('"'+usuarioLogeado.getStatus()+'"');
+                etEstado.setText(usuarioLogeado.getStatus());
+                lvPublicaciones.addHeaderView(viewHeader);
+//                lvPublicaciones.addFooterView(viewEmpty);
             } else {
                 tvNoHayPublicaciones.setVisibility(View.INVISIBLE);
                 adapterPublications = new AdapterPublications(viewFragment.getContext(), publications);
