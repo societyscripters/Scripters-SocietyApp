@@ -9,7 +9,17 @@
     <string name="siguiendo">Siguiendo</string>
     <string name="buscar">Buscar</string>
     <string name="perfil">Perfil</string>
+    <string name="chats">Chat</string>
     <string name="publicar">Publicar</string>
     <string name="selectimg">Selecciona una imagen</string>
     <string name="txtPublicar">¿ Que estas pensando?</string>
+    <string name="title_activity_example_login">ExampleLogin</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
