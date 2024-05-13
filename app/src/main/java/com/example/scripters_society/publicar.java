@@ -108,8 +108,13 @@ public class publicar extends AppCompatActivity {
 
         if (requestCode == 10 && resultCode == RESULT_OK) {
             path = data.getData();
-            ImageView imageView = findViewById(R.id.imgpublic);
-            imageView.setImageURI(path);
+            try {
+                imgBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), path);
+                ImageView imageView = findViewById(R.id.imgpublic);
+                imageView.setImageURI(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             // Imprime un mensaje en la consola
 
         }else if (requestCode == 1 && resultCode == RESULT_OK) {
@@ -153,20 +158,6 @@ public class publicar extends AppCompatActivity {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
-    }
-
-    public String convertirUriABitmap(Uri uri) {
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] byte_arr = stream.toByteArray();
-            String imagenString = Base64.encodeToString(byte_arr, Base64.DEFAULT);
-            return imagenString;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     private void showHomeView() {

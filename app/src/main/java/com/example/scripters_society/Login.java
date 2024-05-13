@@ -85,19 +85,13 @@ public class Login extends AppCompatActivity {
                             getProfileUserLoged(new UserCallBack() {
                                 @Override
                                 public void onUserLoaded(Object[] data) {
-//                                    usuarioLogeado.setId(Integer.parseInt(String.valueOf(data[0])));
                                     usuarioLogeado.setName(String.valueOf(data[0]));
                                     usuarioLogeado.setEmail(String.valueOf(data[1]));
                                     usuarioLogeado.setStatus(String.valueOf(data[2]));
                                     usuarioLogeado.setPosts((JSONArray) data[3]);
-//                                    usuarioLogeado.setEmail_verified_at(String.valueOf(data[3]));
-//                                    usuarioLogeado.setCreated_at(String.valueOf(data[4]));
-//                                    usuarioLogeado.setUpdated_at(String.valueOf(data[5]));
-
                                     Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
                                     showHomeView();
                                 }
-
                                 @Override
                                 public void onError(String mensajeError) {
                                     btnLogin.setVisibility(View.VISIBLE);
@@ -152,14 +146,10 @@ public class Login extends AppCompatActivity {
                     if (jsonResponse.has("status")){
                         if (jsonResponse.getBoolean("status")){
                             JSONObject data = jsonResponse.getJSONObject("data");
-//                            dataUser[0] = data.getInt("id");
                             dataUser[0] = data.getString("name");
                             dataUser[1] = data.getString("email");
                             dataUser[2] = data.getString("estado");
                             dataUser[3] = data.getJSONArray("posts");
-//                            dataUser[3] = data.getString("email_verified_at");
-//                            dataUser[4] = data.getString("created_at");
-//                            dataUser[5] = data.getString("updated_at");
                         } else {
                             String message = jsonResponse.getString("message");
                             Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();

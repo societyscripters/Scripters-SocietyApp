@@ -2,7 +2,6 @@ package com.example.scripters_society.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Publication implements Serializable {
     private int id;
@@ -12,7 +11,7 @@ public class Publication implements Serializable {
     private String pathImage = "";
     private String updated_at;
     private ArrayList<Object> comments;
-
+    private Boolean isLiked = false;
     public Publication(
             int id,
             int user_id,
@@ -27,6 +26,14 @@ public class Publication implements Serializable {
         this.description = description;
         this.pathImage = pathImage;
         this.updated_at = updated_at;
+    }
+
+    public Boolean getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(Boolean isLiked) {
+        this.isLiked = isLiked;
     }
 
     public int getId() {

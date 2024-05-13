@@ -7,7 +7,7 @@
         android:icon="@drawable/home"/>
     <item
         android:id="@+id/comment"
-        android:title="Comentarios"
+        android:title="Chats"
         android:titleTextColor="@color/white"
         android:icon="@drawable/comment"/>
     <item

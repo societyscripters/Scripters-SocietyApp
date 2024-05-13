@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(viewFragment.getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(viewFragment.getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
